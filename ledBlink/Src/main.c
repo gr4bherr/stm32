@@ -6,7 +6,7 @@
 // general purpose I/O
 // port a
 #define GPIOA (AHB1 + 0x0UL)
-#define GPIOA_MODE_R (*(volatile unsigned int *)(GPIOA + 0x0UL)) // offset 0x0 (direction register)
+#define GPIOA_MODE_R (*(volatile unsigned int *)(GPIOA + 0x0UL)) // (direction register)
 #define GPIOA_OD_R (*(volatile unsigned int *)(GPIOA + 0x14UL)) // (data register)
 #define GPIOAEN (1UL<<0) // io port a clock enable
 
@@ -33,6 +33,6 @@ int main(void) {
 
     // set green led to blink
 		GPIOA_OD_R ^= GREENLED;
-		for(int i=0;i<10000000;i++){}
+		for(int i=0;i<1000000;i++){}
 	}
 }

@@ -1,4 +1,5 @@
 .DS_Store
 .metadata
+.vscode
 pdf
 STM32Cube_FW_F4_V1.27.0

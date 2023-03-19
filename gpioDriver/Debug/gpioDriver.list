@@ -35,15 +35,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_ranges 00000030  00000000  00000000  000107b0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0000db43  00000000  00000000  000107e0  2**0
+ 16 .debug_macro  0000da99  00000000  00000000  000107e0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000004e7  00000000  00000000  0001e323  2**0
+ 17 .debug_line   000004d6  00000000  00000000  0001e279  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0004f3fd  00000000  00000000  0001e80a  2**0
+ 18 .debug_str    0004eccb  00000000  00000000  0001e74f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  0006dc07  2**0
+ 19 .comment      00000050  00000000  00000000  0006d41a  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000054  00000000  00000000  0006dc58  2**2
+ 20 .debug_frame  00000054  00000000  00000000  0006d46c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -77,10 +77,10 @@ Disassembly of section .text:
  80001d0:	080002e8 	.word	0x080002e8
 
 080001d4 <main>:
-#define GPIOCEN (1U<<2)
+#define GPIOCEN (1<<2)
 
-#define PIN5 (1U<<5)
-#define PIN13 (1U<<13)
+#define PIN5 (1<<5)
+#define PIN13 (1<<13)
 
 int main(void) {
  80001d4:	b480      	push	{r7}
@@ -100,13 +100,13 @@ int main(void) {
  80001ee:	6313      	str	r3, [r2, #48]	; 0x30
 
   // set gpioa to output mode (01)
-  GPIOA->MODER |= (1U<<10);
+  GPIOA->MODER |= (1<<10);
  80001f0:	4b14      	ldr	r3, [pc, #80]	; (8000244 <main+0x70>)
  80001f2:	681b      	ldr	r3, [r3, #0]
  80001f4:	4a13      	ldr	r2, [pc, #76]	; (8000244 <main+0x70>)
  80001f6:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
  80001fa:	6013      	str	r3, [r2, #0]
-  GPIOA->MODER &= ~(1U<<11);
+  GPIOA->MODER &= ~(1<<11);
  80001fc:	4b11      	ldr	r3, [pc, #68]	; (8000244 <main+0x70>)
  80001fe:	681b      	ldr	r3, [r3, #0]
  8000200:	4a10      	ldr	r2, [pc, #64]	; (8000244 <main+0x70>)
@@ -114,13 +114,13 @@ int main(void) {
  8000206:	6013      	str	r3, [r2, #0]
 
   // set gpioc to input mode (00)
-  GPIOC->MODER &= ~(1U<<26);
+  GPIOC->MODER &= ~(1<<26);
  8000208:	4b0f      	ldr	r3, [pc, #60]	; (8000248 <main+0x74>)
  800020a:	681b      	ldr	r3, [r3, #0]
  800020c:	4a0e      	ldr	r2, [pc, #56]	; (8000248 <main+0x74>)
  800020e:	f023 6380 	bic.w	r3, r3, #67108864	; 0x4000000
  8000212:	6013      	str	r3, [r2, #0]
-  GPIOC->MODER &= ~(1U<<27);
+  GPIOC->MODER &= ~(1<<27);
  8000214:	4b0c      	ldr	r3, [pc, #48]	; (8000248 <main+0x74>)
  8000216:	681b      	ldr	r3, [r3, #0]
  8000218:	4a0b      	ldr	r2, [pc, #44]	; (8000248 <main+0x74>)
@@ -129,13 +129,13 @@ int main(void) {
 
   while(1) {
     // if user btn pressed -> turn on led
-    if (GPIOC->IDR & PIN13) { 
+    if (GPIOC->IDR & PIN13) {
  8000220:	4b09      	ldr	r3, [pc, #36]	; (8000248 <main+0x74>)
  8000222:	691b      	ldr	r3, [r3, #16]
  8000224:	f403 5300 	and.w	r3, r3, #8192	; 0x2000
  8000228:	2b00      	cmp	r3, #0
  800022a:	d004      	beq.n	8000236 <main+0x62>
-      GPIOA->BSRR = (1U<<21); // reset
+      GPIOA->BSRR = (1<<21); // reset
  800022c:	4b05      	ldr	r3, [pc, #20]	; (8000244 <main+0x70>)
  800022e:	f44f 1200 	mov.w	r2, #2097152	; 0x200000
  8000232:	619a      	str	r2, [r3, #24]
@@ -145,7 +145,7 @@ int main(void) {
  8000236:	4b03      	ldr	r3, [pc, #12]	; (8000244 <main+0x70>)
  8000238:	2220      	movs	r2, #32
  800023a:	619a      	str	r2, [r3, #24]
-    if (GPIOC->IDR & PIN13) { 
+    if (GPIOC->IDR & PIN13) {
  800023c:	e7f0      	b.n	8000220 <main+0x4c>
  800023e:	bf00      	nop
  8000240:	40023800 	.word	0x40023800

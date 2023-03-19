@@ -33,34 +33,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := ledDriver
+BUILD_ARTIFACT_NAME := i2cLcdDriver
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-ledDriver.elf \
+i2cLcdDriver.elf \
 
 MAP_FILES += \
-ledDriver.map \
+i2cLcdDriver.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-ledDriver.list \
+i2cLcdDriver.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: ledDriver.elf secondary-outputs
+main-build: i2cLcdDriver.elf secondary-outputs
 
 # Tool invocations
-ledDriver.elf ledDriver.map: $(OBJS) $(USER_OBJS) /Users/gr4bherr/Desktop/code/stm32/ledDriver/STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ledDriver.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/gr4bherr/Desktop/code/stm32/ledDriver/STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ledDriver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+i2cLcdDriver.elf i2cLcdDriver.map: $(OBJS) $(USER_OBJS) /Users/gr4bherr/Desktop/code/stm32/i2cLcdDriver/STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "i2cLcdDriver.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/gr4bherr/Desktop/code/stm32/i2cLcdDriver/STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="i2cLcdDriver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +69,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-ledDriver.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "ledDriver.list"
+i2cLcdDriver.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "i2cLcdDriver.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout ledDriver.elf ledDriver.list ledDriver.map
+	-$(RM) default.size.stdout i2cLcdDriver.elf i2cLcdDriver.list i2cLcdDriver.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

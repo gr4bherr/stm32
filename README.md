@@ -9,6 +9,6 @@ register level programming<br>
  - [ledBlink](ledBlink/Src/main.c): just basic led blink
  - [gpioDriver](gpioDriver/Src/main.c): turn led on button press
  - [uartDriver](uartDriver/Src/main.c): transmits and recieves characters
- - [ledDriver](ledDriver/Src/main.c): basic led driver (with i2c)
+ - [i2cLcdDriver](i2cLcdDriver/Src/main.c): basic i2c driver for lcd
 
  ([drivers](drivers/): official drivers from STM32CubeF4 MCU Package)

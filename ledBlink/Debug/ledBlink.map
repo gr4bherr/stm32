@@ -559,9 +559,9 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
  .debug_line    0x0000000000000000       0x5e ./Src/main.o
  .debug_line    0x000000000000005e       0x84 ./Startup/startup_stm32f401retx.o
 
-.debug_str      0x0000000000000000     0x2e23
- .debug_str     0x0000000000000000     0x2df2 ./Src/main.o
- .debug_str     0x0000000000002df2       0x31 ./Startup/startup_stm32f401retx.o
+.debug_str      0x0000000000000000     0x2e14
+ .debug_str     0x0000000000000000     0x2de3 ./Src/main.o
+ .debug_str     0x0000000000002de3       0x31 ./Startup/startup_stm32f401retx.o
                                          0x63 (size before relaxing)
 
 .comment        0x0000000000000000       0x50

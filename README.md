@@ -1,4 +1,10 @@
-using stm32f401re board (arm cortex m4 32bit risc)
+using:
+stm32f401re board (arm cortex m4 32bit risc)
+HD44780U lcd
+pcf8574 i2c 8bit i/o expander
+
+bare metal 
+register level programming
 
  - [ledBlink](ledBlink/Src/main.c): just basic led blink
  - [gpioDriver](gpioDriver/Src/main.c): turn led on button press

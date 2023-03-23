@@ -11,4 +11,6 @@ register level programming<br>
  - [uartDriver](uartDriver/Src/main.c): transmits and recieves characters
  - [ledDriver](ledDriver/Src/main.c): basic led driver (with i2c)
 
+ - [ledBlinkGhidra](ledBlinkGhidra/Src/main.c): just looking at what the code is actually doing (in ghidra)
+
  ([drivers](drivers/): official drivers from STM32CubeF4 MCU Package)

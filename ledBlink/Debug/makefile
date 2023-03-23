@@ -51,6 +51,12 @@ default.size.stdout \
 OBJDUMP_LIST += \
 ledBlink.list \
 
+OBJCOPY_HEX += \
+ledBlink.hex \
+
+OBJCOPY_BIN += \
+ledBlink.bin \
+
 
 # All Target
 all: main-build
@@ -74,12 +80,22 @@ ledBlink.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+ledBlink.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "ledBlink.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+ledBlink.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "ledBlink.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) default.size.stdout ledBlink.elf ledBlink.list ledBlink.map
+	-$(RM) default.size.stdout ledBlink.bin ledBlink.elf ledBlink.hex ledBlink.list ledBlink.map
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

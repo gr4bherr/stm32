@@ -1,0 +1,27 @@
+
+tools:
+brew install gcc 
+brew install stlink 
+
+
+commands:
+// create object file
+arm-none-eabi-gcc -x assembler-with-cpp -c -O0 -mcpu=cortex-m4 -mthumb -Wall code.S -o code.o
+// linke files
+arm-none-eabi-gcc code.o -mcpu=cortex-m4 -mthumb -Wall --specs=nosys.specs -nostdlib -lgcc -T./linker.ld -o main.elf
+
+// run in separate terminal to get port
+st-util
+
+// start debugger
+arm-none-eabi-gdb main.elf
+// connect debugger to chip
+target extended-remote :4242                    
+// load the code
+load
+// run the code
+contioue
+// let it run for a while then end it
+ctrl-c
+// see if code did what it was supposed to (change r0 and r7)
+info registers
